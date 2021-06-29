@@ -1,22 +1,18 @@
 const request = require('request');
 
 const forecast = (longitude, latitude, callback) => {
-    const  url = `http://api.weatherstack.com/current?access_key=73a9c446173fb723a150cd83eda8a341&query=${latitude},${longitude}`;
-    console.log(url);
+    const  url = `http://api.weatherstack.com/current?access_key=ddd3e79e1bec7c4ea13ff55317fc081b&query=${latitude},${longitude}`;
     request( { url, json: true},(error, { body }) => {
         if(error){
+            debugger;
             callback('Unable to connect the weather info service', undefined)
         }else if(body.length === 0){
             callback('Unable to find the weather info service', undefined)
         }else {
-            // return 'Clear throughout the day. It is currently ${body.current.temperature === undefined? 20 : body.current.temperature}degrees out. It feels likes ${body.current.feelslike === undefined? 20: body.current.feelslike} degrees out.'
-            // callback(undefined,{
-            //     temperature: `Clear throughout the day. It is currently ${body.current.temperature}
-            //     degrees out. It feels likes ${body.current.feelslike} degrees out.`
-            // })
+            console.log(body);
             callback(undefined,{
-                temperature: `Clear throughout the day. It is currently 20
-                degrees out. It feels likes 25 degrees out.`
+                temperature: `Clear throughout the day. It is currently ${body.current.temperature}
+                degrees out. It feels likes ${body.current.feelslike} degrees out. Weather type ${body.current.weather_descriptions[0]} and wind speed is ${body.current.wind_speed}`
             })
         }
     })

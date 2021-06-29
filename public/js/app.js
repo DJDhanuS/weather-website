@@ -23,12 +23,9 @@ weatherForm.addEventListener('submit', (e) => {
             if(data.error){
                 console.log(data.error);
             }else{
-                // console.log(data.location);
-                // console.log(data);
-                // msg_1.textContent = data.location;
-                // msg_2.textContent = data;
-                msg_1.textContent = 'Tumkur' ;
-                msg_2.textContent = 'Weather testing';
+                console.log(data);
+                msg_1.textContent = data.location ;
+                msg_2.textContent = data.forecastData.temperature;
             }
         })
     });
